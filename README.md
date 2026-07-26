@@ -134,8 +134,7 @@ This checks:
 
 It writes `verification_report.txt` with PASS/FAIL on each check.
 **This is the file to screenshot for an application** — "I verified my
-simulation against exact analytical results" is a much stronger claim
-than "I ran a simulation."
+simulation against exact analytical results" 
 
 
 ## Suggested framing for an application
