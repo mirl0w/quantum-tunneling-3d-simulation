@@ -93,9 +93,7 @@ see [Quickstart](#quickstart) to reproduce them.)*
 ## Table of Contents
 - [Why this project](#why-this-project)
 - [Repo structure](#folder-structure)
-- [Quickstart](#quickstart)
 - [Physics verification](#step-4--verify-the-physics-not-just-does-it-run)
-- [Troubleshooting](#troubleshooting-issues-actually-hit-while-testing-this)
 - [License](#license)
 
 ## Why this project
@@ -115,69 +113,8 @@ for a research-oriented application.
 - **MATLAB**: renders both as publication-quality 3D isosurfaces, saves
   screenshots, and exports an MP4 animation of the tunneling event.
 
-## Folder structure
-```
-quantum3d_project/
-├── julia/
-│   ├── Project.toml
-│   ├── tunneling_solver.jl      -> produces tunneling_frames.mat
-│   └── hydrogen_orbitals.jl     -> produces orbitals.mat
-├── matlab/
-│   ├── visualize_tunneling.m    -> reads tunneling_frames.mat, makes PNGs + MP4
-│   └── visualize_orbitals.m     -> reads orbitals.mat, makes PNGs + gallery
-└── outputs/                     -> created automatically, holds all screenshots/video
-```
 
-## Step 1 — Install Julia
-Download from https://julialang.org/downloads (free). Then, in a terminal:
-```bash
-cd quantum3d_project/julia
-julia --project=. -e 'using Pkg; Pkg.instantiate()'
-```
-This installs FFTW.jl and MAT.jl (only needed once).
-
-## Step 2 — Run the physics simulations
-```bash
-julia --project=. tunneling_solver.jl
-julia --project=. hydrogen_orbitals.jl
-```
-- `tunneling_solver.jl` takes ~1-3 minutes on a laptop (64³ grid, 800 steps).
-  It prints the wave packet's mean energy, the barrier height, and the
-  final tunneling transmission probability — a real number you can quote
-  in your write-up (e.g. "12% transmission despite E < V0").
-- `hydrogen_orbitals.jl` takes well under a minute.
-
-Both scripts write `.mat` files directly into the `julia/` folder.
-
-## Step 3 — Run the MATLAB visualizations
-Open MATLAB, `cd` into `matlab/`, then:
-```matlab
-visualize_tunneling.m
-visualize_orbitals.m
-```
-This populates `outputs/` with:
-- `tunneling_before_barrier.png`, `tunneling_at_barrier.png`,
-  `tunneling_tunneling.png`, `tunneling_after_barrier.png`
-- `tunneling_animation.mp4`
-- `orbital_1s.png`, `orbital_2s.png`, `orbital_2pz.png`,
-  `orbital_3dz2.png`, `orbital_4fz3.png`
-- `orbital_gallery.png` (a single poster-style composite — great as a
-  standalone image for a portfolio page or application)
-
-No manual screenshotting needed — `exportgraphics` renders these at
-300 DPI automatically, so they're print-quality out of the box.
-
-## Tuning knobs worth knowing (for your write-up / if asked about it)
-- `tunneling_solver.jl`: `V0` (barrier height), `kx0` (packet momentum,
-  sets energy E = kx0²/2), `barrier_half_width` — raising `V0` above `E`
-  further shows the "classically forbidden" regime; try a few values and
-  plot transmission probability vs. barrier height/width for an extra
-  figure (this reproduces the textbook tunneling-coefficient curve).
-- `hydrogen_orbitals.jl`: swap in other `(n,l,m)` triples for other
-  orbitals (e.g. `(3,1,0)` for 3p, `(3,2,2)` for a cloverleaf 3d_{x²-y²}
-  analog) — the code is fully general, not hardcoded to these five.
-
-## Step 4 — Verify the physics (not just "does it run")
+## Verify the physics (not just "does it run")
 Run one more Julia script that checks your results against known,
 closed-form analytical physics:
 ```bash
@@ -201,50 +138,6 @@ It writes `verification_report.txt` with PASS/FAIL on each check.
 simulation against exact analytical results" is a much stronger claim
 than "I ran a simulation."
 
-## Troubleshooting (issues actually hit while testing this)
-- **`load: Unable to find file`** — the `.mat` files don't exist yet
-  because the Julia scripts haven't been run, or MATLAB's current folder
-  isn't the `matlab/` directory. Run `pwd` in MATLAB and confirm it ends
-  in `...\quantum3d_project\matlab`.
-- **Nested duplicate folder after extracting the zip** (e.g.
-  `quantum3d_project\quantum3d_project\julia`) — this happens because the
-  zip already contains a top-level `quantum3d_project` folder. Not a bug,
-  just extract-then-check-the-real-path with `dir /s /b tunneling_solver.jl`
-  (Windows) or `find . -name tunneling_solver.jl` (Mac/Linux).
-- **Commands silently glue together in terminal** (e.g. `hydrogen_orbitals.jldir`) —
-  run one command at a time and wait for it to finish before pasting the next.
-- **`VideoWriter(...,'MPEG-4')` errors on Windows/Linux MATLAB** — swap
-  `'MPEG-4'` for `'Motion JPEG AVI'` in `visualize_tunneling.m`.
-- **`isosurface` produces an empty/blank screenshot** — the isovalue
-  threshold (`0.10` or `0.15` fraction of peak) is too high for that
-  frame/orbital; lower it in the script.
-
-## Publishing this on GitHub
-1. Install Git if you don't have it: https://git-scm.com/downloads
-2. Create a new empty repo on github.com (don't add a README there — you
-   already have one).
-3. From inside `quantum3d_project/` (the folder with this README):
-```bash
-git init
-git add .
-git commit -m "Initial commit: 3D quantum tunneling + hydrogen orbital simulation"
-git branch -M main
-git remote add origin https://github.com/<your-username>/<repo-name>.git
-git push -u origin main
-```
-4. The included `.gitignore` already excludes the large regeneratable
-   files (`*.mat` data, `*.mp4` animation) so your repo stays small and
-   clean — but keeps the PNG screenshots tracked so they render directly
-   in your GitHub README.
-5. To actually show the screenshots in your README, add something like
-   this near the top of this file (after you've generated the PNGs):
-```markdown
-![Hydrogen orbital gallery](outputs/orbital_gallery.png)
-![Tunneling through the barrier](outputs/tunneling_tunneling.png)
-```
-6. For the animation, since `.mp4` is excluded from the repo: upload it
-   as an unlisted YouTube video or to Google Drive, and link it in the
-   README instead of committing the file.
 
 ## Suggested framing for an application
 Lead with the physics question ("does the electron ever go where
