@@ -11,8 +11,7 @@ A physics computing project combining:
 ## Why this project
 Quantum tunneling and atomic orbitals are two of the most iconic results
 in physics — instantly recognizable, conceptually deep, and visually
-striking. Solving the TDSE from scratch (not just plotting a textbook
-formula) demonstrates real numerical methods (FFT-based PDE solving),
+striking. Solving the TDSE from scratch demonstrates real numerical methods (FFT-based PDE solving),
 while the hydrogen orbitals are derived analytically from the actual
 Laguerre/Legendre special functions rather than looked up — good signal
 for a research-oriented application.
