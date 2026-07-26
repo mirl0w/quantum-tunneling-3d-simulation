@@ -1,0 +1,19 @@
+# Generated data files -- large, and regeneratable from the .jl scripts.
+# Do NOT commit these to GitHub (tunneling_frames.mat alone is ~90MB,
+# well past what a clean repo should carry).
+julia/*.mat
+julia/verification_report.txt
+
+# The animation is large -- keep it off GitHub proper. Link to it via
+# a hosted copy (e.g. YouTube unlisted, Google Drive) in the README instead.
+outputs/*.mp4
+
+# Screenshots (outputs/*.png) are intentionally NOT ignored -- keep them
+# tracked so they render inline in the GitHub README.
+
+# Julia environment cruft
+julia/Manifest.toml
+
+# OS junk
+.DS_Store
+Thumbs.db
