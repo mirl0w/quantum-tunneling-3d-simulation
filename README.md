@@ -114,7 +114,7 @@ for a research-oriented application.
   screenshots, and exports an MP4 animation of the tunneling event.
 
 
-## Verify the physics (not just "does it run")
+## Verify the physics 
 Run one more Julia script that checks your results against known,
 closed-form analytical physics:
 ```bash
