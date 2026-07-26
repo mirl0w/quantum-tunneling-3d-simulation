@@ -1,4 +1,4 @@
-# Quantum Tunneling & Atomic Orbitals — A 3D Julia/MATLAB Simulation
+# Quantum Tunneling & Atomic Orbitals 
 
 ![Julia](https://img.shields.io/badge/Julia-1.9%2B-9558B2?logo=julia&logoColor=white)
 ![MATLAB](https://img.shields.io/badge/MATLAB-R2021b%2B-orange?logo=mathworks&logoColor=white)
