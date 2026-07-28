@@ -2,7 +2,7 @@
 
 ![Julia](https://img.shields.io/badge/Julia-1.9%2B-9558B2?logo=julia&logoColor=white)
 ![MATLAB](https://img.shields.io/badge/MATLAB-R2021b%2B-orange?logo=mathworks&logoColor=white)
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 
 A from-scratch numerical solution of the 3D time-dependent Schrödinger
 equation (quantum tunneling through a potential barrier) and the exact
