@@ -93,7 +93,7 @@ https://github.com/user-attachments/assets/bfd1c40c-2ad3-4b95-86c4-89533bd0116f
 - [Why this project](#why-this-project)
 - [Repo structure](#folder-structure)
 - [Physics verification](#step-4--verify-the-physics-not-just-does-it-run)
-- [License](#license)
+
 
 ## Why this project
 Quantum tunneling and atomic orbitals are two of the most iconic results
@@ -144,6 +144,3 @@ state the numerical transmission probability from your run, then show
 the orbital gallery as the "structure of the atom" payoff. One paragraph
 of physics + one number + one striking image tends to land better than
 a long code walkthrough.
-
-## License
-MIT — see [LICENSE](LICENSE). Free to use, modify, and learn from.
